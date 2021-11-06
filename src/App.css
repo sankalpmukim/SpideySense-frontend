@@ -1,0 +1,9 @@
+.App {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(12, 1fr);
+  max-height: 100%;
+}
+#root {
+  height: 100%;
+}

@@ -1,5 +1,4 @@
 import {
-  collection,
   collectionGroup,
   query,
   getFirestore,
@@ -10,21 +9,36 @@ import {
   doc,
   serverTimestamp,
 } from "@firebase/firestore";
-import { getAuth, signOut } from "@firebase/auth";
-import { useAuthState } from "react-firebase9-hooks/auth";
+import { getAuth } from "@firebase/auth";
 import { useEffect, useState } from "react";
+import "./CSS/Homepage.css";
+import { Service } from "./Service";
+import { Subscribe } from "../Utils/Subscribe";
+import { useAuthState } from "react-firebase9-hooks/auth";
+
+const filterer = (arr) => {
+  arr.filter(
+    (v, i, a) =>
+      a.findIndex((t) => JSON.stringify(t) === JSON.stringify(v)) === i
+  );
+  return arr;
+};
+
 export const Homepage = () => {
-  const [user] = useAuthState(getAuth());
   const [subs, setSubs] = useState([]);
+  const [user] = useAuthState(getAuth());
   // Fetch subscriptions
   useEffect(() => {
     const db = getFirestore();
     const subscriptions = query(collectionGroup(db, "services"));
-    getDocs(subscriptions).then((snap) =>
+    getDocs(subscriptions).then((snap) => {
+      setSubs([]);
       snap.forEach((doc) => {
-        setSubs((x) => x.concat([doc.data()]));
-      })
-    );
+        const data = doc.data();
+        data["id"] = doc.id;
+        setSubs((x) => x.concat([data]));
+      });
+    });
   }, []);
   // Set user
   useEffect(() => {
@@ -53,8 +67,17 @@ export const Homepage = () => {
 
   return (
     <>
-      <div>{user.displayName} is logged in</div>
-      <button onClick={() => signOut(getAuth())}>Sign out</button>
+      <div className="content">
+        {filterer(subs).map((x) => (
+          <Service
+            func={() => {
+              Subscribe(user, x.id);
+            }}
+            funcText="Subscribe"
+          />
+        ))}
+      </div>
+      <div className="footer">I guess this appears at the bottom</div>
     </>
   );
 };
