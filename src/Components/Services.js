@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase9-hooks/auth";
 import { query, getFirestore, getDocs, collection } from "@firebase/firestore";
 import { useEffect, useState } from "react";
 import { Service } from "./Service";
+import { useNavigate } from "react-router";
 
 export const Services = () => {
   const db = getFirestore();
@@ -23,10 +24,19 @@ export const Services = () => {
     func();
   }, []);
 
+  const navigate = useNavigate();
+
   return (
     <div className="content">
       {services.map((x) => (
-        <Service funcText="Details" />
+        <Service
+          info={x.info}
+          funcText="Details"
+          func={() => {
+            navigate(`/manage-services/${x.id}`);
+          }}
+          key={x.id}
+        />
       ))}
     </div>
   );

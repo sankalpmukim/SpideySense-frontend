@@ -15,6 +15,7 @@ import "./CSS/Homepage.css";
 import { Service } from "./Service";
 import { Subscribe } from "../Utils/Subscribe";
 import { useAuthState } from "react-firebase9-hooks/auth";
+import { useNavigate } from "react-router";
 
 const filterer = (arr) => {
   arr.filter(
@@ -25,6 +26,7 @@ const filterer = (arr) => {
 };
 
 export const Homepage = () => {
+  const navigate = useNavigate();
   const [subs, setSubs] = useState([]);
   const [user] = useAuthState(getAuth());
   // Fetch subscriptions
@@ -70,14 +72,29 @@ export const Homepage = () => {
       <div className="content">
         {filterer(subs).map((x) => (
           <Service
+            info={x.info}
             func={() => {
               Subscribe(user, x.id);
             }}
             funcText="Subscribe"
+            key={x.id}
           />
         ))}
       </div>
-      <div className="footer">I guess this appears at the bottom</div>
+      <div className="footer">
+        <div>
+          <button>Your subscriptions</button>
+        </div>
+        <div>
+          <button
+            onClick={() => {
+              navigate("/manage-services");
+            }}
+          >
+            Manage services
+          </button>
+        </div>
+      </div>
     </>
   );
 };

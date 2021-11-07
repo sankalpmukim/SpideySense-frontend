@@ -8,6 +8,8 @@ import {
 import { Homepage } from "./Components/Homepage";
 import { useAuthState } from "react-firebase9-hooks/auth";
 import { Route, Routes } from "react-router";
+import { Services } from "./Components/Services";
+import { ServiceDetail } from "./Components/ServiceDetail";
 
 function App() {
   const auth = getAuth();
@@ -24,6 +26,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/manage-services" element={<Services />} />
+            <Route path="/manage-services/:id" element={<ServiceDetail />} />
           </Routes>
         </>
       ) : (
