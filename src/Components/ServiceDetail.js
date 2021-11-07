@@ -2,13 +2,14 @@ import { getAuth } from "@firebase/auth";
 import { useAuthState } from "react-firebase9-hooks/auth";
 import { getDoc, doc, getFirestore, updateDoc } from "@firebase/firestore";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 export const ServiceDetail = () => {
   const id = useParams().id;
   const [user] = useAuthState(getAuth());
   const [data, setData] = useState(null);
   const db = getFirestore();
+  const navigate = useNavigate();
   const docRef = doc(db, `users/${user.uid}/services/${id}`);
   useEffect(() => {
     const func = async () => {
@@ -30,16 +31,27 @@ export const ServiceDetail = () => {
   return (
     <>
       {data ? (
-        <div>
-          <input
-            type="textarea"
-            value={data["info"]}
-            onChange={(e) => {
-              setData({ info: e.currentTarget.value });
-            }}
-          />
-          <button onClick={update}>Update info</button>
-        </div>
+        <>
+          <div>
+            <input
+              type="textarea"
+              value={data["info"]}
+              onChange={(e) => {
+                setData({ info: e.currentTarget.value });
+              }}
+            />
+            <button onClick={update}>Update info</button>
+          </div>
+          <div>
+            <button
+              onClick={() => {
+                navigate(`/manage-services/${id}/send-alert`);
+              }}
+            >
+              Send alert
+            </button>
+          </div>
+        </>
       ) : null}
     </>
   );

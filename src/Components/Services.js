@@ -39,6 +39,15 @@ export const Services = () => {
           key={x.id}
         />
       ))}
+      <div>
+        <button
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Return to homepage
+        </button>
+      </div>
     </div>
   );
 };
