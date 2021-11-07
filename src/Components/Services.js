@@ -42,6 +42,15 @@ export const Services = () => {
       <div>
         <button
           onClick={() => {
+            navigate("/create-service");
+          }}
+        >
+          Create new service
+        </button>
+      </div>
+      <div>
+        <button
+          onClick={() => {
             navigate("/");
           }}
         >

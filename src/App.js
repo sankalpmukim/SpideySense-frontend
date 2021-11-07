@@ -10,6 +10,7 @@ import { useAuthState } from "react-firebase9-hooks/auth";
 import { Route, Routes } from "react-router";
 import { Services } from "./Components/Services";
 import { ServiceDetail } from "./Components/ServiceDetail";
+import { SendAlert } from "./Components/SendAlert";
 
 function App() {
   const auth = getAuth();
@@ -27,6 +28,10 @@ function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/manage-services" element={<Services />} />
             <Route path="/manage-services/:id" element={<ServiceDetail />} />
+            <Route
+              path="/manage-services/:id/send-alert"
+              element={<SendAlert />}
+            />
           </Routes>
         </>
       ) : (
