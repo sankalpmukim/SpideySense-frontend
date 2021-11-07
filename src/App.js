@@ -11,6 +11,7 @@ import { Route, Routes } from "react-router";
 import { Services } from "./Components/Services";
 import { ServiceDetail } from "./Components/ServiceDetail";
 import { SendAlert } from "./Components/SendAlert";
+import { CreateService } from "./Components/CreateService";
 
 function App() {
   const auth = getAuth();
@@ -27,6 +28,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/manage-services" element={<Services />} />
+            <Route path="/create-service" element={<CreateService />} />
             <Route path="/manage-services/:id" element={<ServiceDetail />} />
             <Route
               path="/manage-services/:id/send-alert"

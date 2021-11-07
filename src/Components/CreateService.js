@@ -22,11 +22,11 @@ export const CreateService = () => {
           type="text"
           value={text}
           onChange={(e) => {
-            setText(e.currentTarget);
+            setText(e.currentTarget.value);
           }}
         />
       </div>
-      <button onClick={() => submit(text)} />
+      <button onClick={() => submit(text)}>Create Service</button>
     </div>
   );
 };
