@@ -83,7 +83,13 @@ export const Homepage = () => {
       </div>
       <div className="footer">
         <div>
-          <button>Your subscriptions</button>
+          <button
+            onClick={() => {
+              navigate("/view-subscriptions");
+            }}
+          >
+            Your subscriptions
+          </button>
         </div>
         <div>
           <button

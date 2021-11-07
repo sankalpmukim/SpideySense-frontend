@@ -12,6 +12,7 @@ import { Services } from "./Components/Services";
 import { ServiceDetail } from "./Components/ServiceDetail";
 import { SendAlert } from "./Components/SendAlert";
 import { CreateService } from "./Components/CreateService";
+import { ViewSubscriptions } from "./Components/ViewSubscriptions";
 
 function App() {
   const auth = getAuth();
@@ -34,6 +35,7 @@ function App() {
               path="/manage-services/:id/send-alert"
               element={<SendAlert />}
             />
+            <Route path="/view-subscriptions" element={<ViewSubscriptions />} />
           </Routes>
         </>
       ) : (
