@@ -18,6 +18,7 @@ export const ServiceDetail = () => {
       console.log(id);
     };
     func();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const update = () => {
