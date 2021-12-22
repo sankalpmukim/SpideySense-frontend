@@ -1,6 +1,22 @@
-# Getting Started with Create React App
+# Spidey Sense.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## What it does
+
+It allows users to send alerts to everyone in a group. Users can also automate alerts using IOT devices with sensors.
+How we built it: We used React for frontend development, Firebase cloud messaging for the alert system, Firebase Admin SDK for using firebase cloud messaging, and Node js for backend. Check out YouTube demonstration [here](https://youtu.be/41JNzObtCXM)
+
+## Inspiration
+
+Wanting alerts for unwanted people entering the residential buildings. This project is based on theme better together. It is a community based alert system where people rely on each other and support each other.
+
+## Challenges we ran into
+
+Learning A LOT of new technologies and making them work together.
+Accomplishments that we're proud of: We got a working login connected with a database, this was one of the most difficult parts of our project.
+## What we learned
+
+We picked up a lot of new skills. For most of us this is our first close to completion team project. We are learning about different roles in a team and parallel development.
+What's next for Spidey Sense: We plan to finish this project and actually publish it. This is a great idea and we plan to use it ourselves. (Probable use case: Warning friends that an RA is entering the building so stop the party and mask up. (JK pls don't do that)).
 
 ## Available Scripts
 
